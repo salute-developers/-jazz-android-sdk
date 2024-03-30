@@ -58,67 +58,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
 
     //Jazz SDK
-    implementation("com.sdkit.android.jazz:jazz-public-sdk:23.11.1.97")
-    implementation("com.sdkit.jazz:jazzcastlib:1.15.3")
-
-    //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom
-    implementation(platform('androidx.compose:compose-bom:2022.11.00'))
-    implementation(platform('com.google.firebase:firebase-bom:32.0.0'))
-    //endregion
+    implementation("com.sdkit.jazz:jazz-public-sdk:24.01.1.36")
+    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.01.1.36"))
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-}
-
-String getJazzVersion() {
-    return "23.10.2.90"
-}
-
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        // Тут перенаправляем все core что требуется внутри платформы в fataar артефакт
-        substitute(module("ru.sberdevices.core:analytics"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:analytics_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:di_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:di"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:di_graph"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:utils"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:utils_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:logging_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:logging"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:platform"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:platform_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:designsystem"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:viewmodels"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:coroutines"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:coroutines_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:config_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:config"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:network_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:network"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-
-        substitute(module("ru.sberdevices.core:font"))
-                .using(module("com.sdkit.android.core:core-font:" + getJazzVersion()))
-
-    }
 }

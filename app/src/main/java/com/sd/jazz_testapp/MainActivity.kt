@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     val jazzSdkTokenProvider = JazzSdkTokenProvider(provider = object : JazzTokenConfigurationProvider {
         override fun getConfiguration(): JazzTokenConfiguration {
             return JazzTokenConfiguration(
+                userId = "test",
                 secretKey = binding.sdkKeyEditText.text.toString(),
                 liveTimeDurationInSeconds = 180
             )
