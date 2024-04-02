@@ -2,26 +2,11 @@
 ### Шаг 1. В Application на onCreate прописываем installJazzPublicSdk():
 
 ```kotlin
-   class MainApplication : Application() {
-
-   override fun onCreate() {
-      super.onCreate()
-      installJazzPublicSdk()
-   }
-}
-```
-
-<details><summary>(Дополнительно) Расширенные настройки installJazzPublicSdk()</summary>
-
-  ```kotlin
  // Устанавливаем необходимые зависимости для Jazz
 installJazzPublicSdk(
     jazzConfig = JazzSdk.JazzConfig(
         // Здесь устанавливаем платформенные зависимости Jazz
-        // Обязательно нужно пробросить SECRET_KEY из смартмаркета
-        platformDependencies = object : JazzPlatformDependencies by DefaultJazzSdkPlatformDependencies() {
-            override val videoCallsFeatureFlags: VideoCallsFeatureFlags = JazzSdkFeatureFlags()
-        }
+        platformDependencies = DefaultJazzSdkPlatformDependencies()
     ),
     coreConfig = JazzSdk.CoreConfig(
         context = applicationContext,
@@ -31,9 +16,8 @@ installJazzPublicSdk(
         ),
     ),
 )
-  ```
+ ```
 
-</details>
 
 ### Шаг 2. Если переопределили WorkerFactory для WorkManager в своем приложении - нужно поддержать JazzWorkerFactory
 
