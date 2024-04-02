@@ -55,66 +55,10 @@ plugins {
 * Дополняем блок dependencies:
 ```groovy
     //Jazz SDK
-    implementation("com.sdkit.android:jazz-public-sdk:23.11.1.97")
-    implementation("com.sdkit.jazz:jazzcastlib:1.15.3")
-
-    //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom
-    implementation(platform('androidx.compose:compose-bom:2022.11.00'))
-    implementation(platform('com.google.firebase:firebase-bom:32.0.0'))
+    implementation("com.sdkit.jazz:jazz-public-sdk:24.02.1.47")
+    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.02.1.47"))
     //endregion
  ```
-
-Так же добавляем блок configurations.all {}
-```groovy
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        // Тут перенаправляем все core что требуется внутри платформы в fataar артефакт
-        substitute(module("ru.sberdevices.core:analytics"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:analytics_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:di_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:di"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:di_graph"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:utils"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:utils_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:logging_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:logging"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:platform"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:platform_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:designsystem"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:viewmodels"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:coroutines"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:coroutines_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:config_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:config"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:network_api"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-        substitute(module("ru.sberdevices.core:network"))
-                .using(module("com.sdkit.android.core:core-ext:" + getJazzVersion()))
-
-        substitute(module("ru.sberdevices.core:font"))
-                .using(module("com.sdkit.android.core:core-font:" + getJazzVersion()))
-
-    }
-}
-```
-
 
 #### Дополнительный материал:
 

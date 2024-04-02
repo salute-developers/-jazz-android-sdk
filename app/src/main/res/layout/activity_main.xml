@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@+id/sdkKeyEditText"
-        android:layout_width="@dimen/size_200dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:hint="@string/insert_sdk_key_here"

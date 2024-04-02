@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 fun scheduleAndJoinConference() {
     lifecycleScope.launchWhenResumed {
         val scheduled = withContext(Dispatchers.IO) {
-            getJazzIntegrationClientApi().jazzIntegrationClient.scheduleConference(
+            JazzSdk.getIntegrationClientApi().jazzIntegrationClient.scheduleConference(
                 roomType = RoomType.Anonymous.value,
                 name = "Новая видеовстреча",
                 // Закрытая или открытая встреча
@@ -48,7 +48,7 @@ fun scheduleAndJoinConference() {
                     micEnabled = false,
                     cameraEnabled = false
                 )
-                getJazzIntegrationClientApi().jazzIntegrationClient.joinConference(joinArgs)
+                JazzSdk.getIntegrationClientApi().jazzIntegrationClient.joinConference(joinArgs)
             }
             is ScheduledConferenceResult.Error -> {
                 val message = "Title: ${scheduled.title}, description: ${scheduled.description}"
