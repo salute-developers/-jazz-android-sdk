@@ -58,8 +58,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
 
     //Jazz SDK
-    implementation("com.sdkit.jazz:jazz-public-sdk:24.02.1.47")
-    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.02.1.47"))
+    implementation("com.sdkit.jazz:jazz-public-sdk:24.03.1.98")
+    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.03.1.98"))
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
