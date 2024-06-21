@@ -55,8 +55,8 @@ plugins {
 * Дополняем блок dependencies:
 ```groovy
     //Jazz SDK
-    implementation("com.sdkit.jazz:jazz-public-sdk:24.02.1.47")
-    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.02.1.47"))
+    implementation("com.sdkit.jazz:jazz-public-sdk:24.03.1.98")
+    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.03.1.98"))
     //endregion
  ```
 

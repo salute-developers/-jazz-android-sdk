@@ -6,7 +6,14 @@
 installJazzPublicSdk(
     jazzConfig = JazzSdk.JazzConfig(
         // Здесь устанавливаем платформенные зависимости Jazz
-        platformDependencies = DefaultJazzSdkPlatformDependencies()
+        platformDependencies =  object : JazzPlatformDependencies by DefaultJazzSdkPlatformDependencies() {
+            override val videoCallsFeatureFlags: VideoCallsFeatureFlags = JazzSdkFeatures()
+            override val jazzTokenProvider = object : JazzTokenProvider {
+                override suspend fun getToken(): String? {
+                    return jazzSdkTokenProvider.getToken()
+                }
+            }
+        }
     ),
     coreConfig = JazzSdk.CoreConfig(
         context = applicationContext,
@@ -16,7 +23,21 @@ installJazzPublicSdk(
         ),
     ),
 )
+
+private val jazzSdkTokenProvider by lazy {
+    JazzSdkTokenProvider(provider = object : JazzTokenConfigurationProvider {
+        override fun getConfiguration(): JazzTokenConfiguration {
+            return JazzTokenConfiguration(
+                userId = "test",
+                secretKey = "Ваш секретный ключ",
+                liveTimeDurationInSeconds = 180
+            )
+        }
+    })
+}
  ```
+
+Секретный ключ jazz sdk получаем по ссылке https://clck.ru/35aWZw
 
 
 ### Шаг 2. Если переопределили WorkerFactory для WorkManager в своем приложении - нужно поддержать JazzWorkerFactory
